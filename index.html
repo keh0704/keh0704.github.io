@@ -91,11 +91,50 @@
               </td>
             </tr>
 
-            <tr>
+            <tr onmouseover="voxelgs_start()" onmouseout="voxelgs_stop()">
               <td style="padding:16px;width:20%;vertical-align:middle">
-                <!-- TODO: images/paper.jpg（160×160） -->
-                <img src="Voxel-GS/1.png" alt="paper thumbnail" width="200" height="160">
+                <div class="one">
+                  <img id="voxelgs_image"
+                       src="Voxel-GS/1.png"
+                       alt="paper thumbnail"
+                       width="200"
+                       height="160">
+                </div>
+            
+                <script type="text/javascript">
+                  let voxelgs_timer;
+                  let voxelgs_index = 1;
+            
+                  function voxelgs_start() {
+                    clearInterval(voxelgs_timer);
+            
+                    voxelgs_index = 1;
+            
+                    voxelgs_timer = setInterval(function() {
+                      voxelgs_index++;
+            
+                      if (voxelgs_index > 3) {
+                        voxelgs_index = 1;
+                      }
+            
+                      document.getElementById("voxelgs_image").src =
+                        "Voxel-GS/" + voxelgs_index + ".png";
+                    }, 800);
+                  }
+            
+                  function voxelgs_stop() {
+                    clearInterval(voxelgs_timer);
+            
+                    voxelgs_index = 1;
+            
+                    document.getElementById("voxelgs_image").src =
+                      "Voxel-GS/1.png";
+                  }
+            
+                  voxelgs_stop();
+                </script>
               </td>
+              
               <td style="padding:8px;width:80%;vertical-align:middle">
                 <a href="https://github.com/keh-cv/Voxel-GS"> <!--project-page -->
                   <span class="papertitle">Consistent 3D Gaussian Scene Update via Voxel-Based Localization</span>
